@@ -38,6 +38,7 @@
 }
 
 .sidebar {
+    /*
     border-right: 0.1rem solid lightgray;
     width: 260px;
     min-width: 260px;
@@ -48,6 +49,7 @@
     bottom: 0;
     left: 0;
     cursor: col-resize;
+    */
 }
 
 #content {
