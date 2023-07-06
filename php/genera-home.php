@@ -47,7 +47,7 @@ if ($result->num_rows === 1) {
 
     // Genera la struttura della sidebar utilizzando l'ID dell'elemento radice
     $output = '<li data-attrib-id="' . $rootId . '" data-attrib-type="folder">';
-    $output .= '<a href="#"><i class="fas fa-folder-open yellow"></i> <span>Root</span></a>';
+    $output .= '<a href="#"><i class="fas fa-folder-open yellow folder-icon"></i> <span> Root</span><i class="fas fa-plus add-icon" data-attrib-id="' . $rootId . '"></i></a>';
 
     $output .= generaStruttura($rootId, $conn);
 
