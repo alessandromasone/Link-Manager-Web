@@ -108,7 +108,8 @@
 }
 
 .add-icon,
-.delete-icon {
+.delete-icon,
+.edit-icon {
     display: none;
     margin-left: 5px;
     font-size: 1rem;
@@ -122,8 +123,13 @@
     color: #dc3545;
 }
 
+.edit-icon {
+    color: #198754;
+}
+
 a:hover .add-icon,
-a:hover .delete-icon {
+a:hover .delete-icon,
+a:hover .edit-icon {
     display: inline;
 }
 

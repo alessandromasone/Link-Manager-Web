@@ -19,7 +19,8 @@
         </div>
     </div>
 
-    <?php include_once('php/modal.php'); ?>
+    <?php include_once('php/create-modal.php'); ?>
+    <?php include_once('php/edit-modal.php'); ?>
 
     <script src="js/generate-home.js"></script>
 
@@ -28,6 +29,7 @@
     <script src="js/drag.js"></script>
     <script src="js/create.js"></script>
     <script src="js/delete.js"></script>
+    <script src="js/edit.js"></script>
     <!--<script src="js/sidebar.js"></script>-->
 
 

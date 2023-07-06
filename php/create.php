@@ -33,7 +33,7 @@ if (isset($_GET['folder'])) {
         //echo $newItemId;
         $output = '<li data-attrib-id="' . $newItemId . '" data-attrib-type="folder">';
 
-        $output .= '<a href="#"><i class="fas fa-folder-open yellow folder-icon"></i> <span>' . $folderName . '</span><i class="fas fa-plus add-icon" data-attrib-id="' . $newItemId . '" onclick="clickaddbutton(' . $newItemId . ')"></i> <i class="fas fa-trash delete-icon" data-attrib-id="' . $newItemId . '" onclick="clickdeletebutton(' . $newItemId . ')"></i></a></li>';
+        $output .= '<a href="#"><i class="fas fa-folder-open yellow folder-icon"></i> <span>' . $folderName . '</span><i class="fas fa-solid fa-pen edit-icon" onclick="clickeditbutton(' . $id . ')"></i> <i class="fas fa-plus add-icon" data-attrib-id="' . $newItemId . '" onclick="clickaddbutton(' . $newItemId . ')"></i> <i class="fas fa-trash delete-icon" data-attrib-id="' . $newItemId . '" onclick="clickdeletebutton(' . $newItemId . ')"></i></a></li>';
 
         echo $output;
     } else {
@@ -70,7 +70,7 @@ if (isset($_GET['folder'])) {
         //echo $newItemId;
         $output = '<li data-attrib-id="' . $newItemId . '" data-attrib-type="link">';
 
-        $output .= '<a href="#"><span>' . $linkName . '</span><i class="fas fa-trash delete-icon" data-attrib-id="' . $newItemId . '" onclick="clickdeletebutton(' . $newItemId . ')"></i></a></li>';
+        $output .= '<a href="#"><span>' . $linkName . '</span><i class="fas fa-solid fa-pen edit-icon" onclick="clickeditbutton(' . $id . ')"></i> <i class="fas fa-trash delete-icon" data-attrib-id="' . $newItemId . '" onclick="clickdeletebutton(' . $newItemId . ')"></i></a></li>';
         echo $output;
     } else {
         echo "Errore durante l'aggiunta del link: " . $conn->error;

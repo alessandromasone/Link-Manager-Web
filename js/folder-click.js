@@ -10,8 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (listItem) {
             const folderIcon = listItem.querySelector('.folder-icon');
-            const addIcon = listItem.querySelector('.add-icon');
-            const deleteIcon = listItem.querySelector('.delete-icon');
 
             if (folderIcon && folderIcon === target) {
                 const childList = listItem.querySelector('ul');
@@ -27,14 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         folderIcon.classList.add('fa-folder');
                     }
                 }
-            } else if (addIcon && addIcon === target) {
-                const folderId = listItem.dataset.attribId;
-                console.log('Aggiungi elemento:', folderId);
-                // Aggiungi qui la logica per aggiungere un elemento
-            } else if (deleteIcon && deleteIcon === target) {
-                const folderId = listItem.dataset.attribId;
-                console.log('Elimina elemento:', folderId);
-                // Aggiungi qui la logica per eliminare un elemento
             }
         }
     });
