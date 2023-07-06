@@ -35,15 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const folderId = listItem.dataset.attribId;
                 console.log('Elimina elemento:', folderId);
                 // Aggiungi qui la logica per eliminare un elemento
-            } else {
-                const folderName = listItem.querySelector('.folder-name');
-                const selectedItem = document.querySelector('.selected');
-
-                if (selectedItem) {
-                    selectedItem.classList.remove('selected');
-                }
-
-                listItem.classList.add('selected');
             }
         }
     });

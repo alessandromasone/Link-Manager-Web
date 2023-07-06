@@ -124,3 +124,18 @@ a:hover .add-icon,
 a:hover .delete-icon {
     display: inline;
 }
+
+.tree .drag-over {
+    border: 2px dashed #f7cc4f;
+    background-color: #f2f2f2;
+    opacity: 0.7;
+}
+
+.tree ul {
+    min-height: 20px; /* Aggiungi una altezza minima per l'area di trascinamento */
+}
+
+.tree ul li {
+    /* Aggiungi transizioni per un effetto di trascinamento più fluido */
+    transition: background-color 0.3s, padding 0.3s;
+}
