@@ -1,0 +1,126 @@
+.tree {
+    font-family: Arial, sans-serif;
+    line-height: 1.5em;
+}
+
+.tree ul {
+    padding-left: 10px;
+    position: relative;
+}
+
+.tree ul li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0em;
+    line-height: 1.5em;
+    position: relative;
+}
+
+.tree ul li a {
+    padding: 5px;
+    margin: 5px 0;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.tree ul li a span {
+    padding-left: 5px;
+}
+
+.tree li .selected a,
+.tree:hover li .hover a {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+
+.sidebar {
+    border-right: 0.1rem solid lightgray;
+    width: 260px;
+    min-width: 260px;
+    max-width: 350px;
+    overflow-x: auto;
+    overflow-y: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    cursor: col-resize;
+}
+
+#content {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 10px;
+}
+
+#content ul li a {
+    color: #333;
+}
+
+.actionButtons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#createFolderButton,
+#addFileButton,
+#deleteButton {
+    background-color: #f7cc4f;
+    color: #333;
+    padding: 6px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#folderNameInput,
+#fileNameInput {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 150px;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.toggleSidebar {
+    display: flex;
+    align-items: baseline;
+}
+
+.toggleSidebar h2 {
+    margin: 0;
+}
+
+.add-icon,
+.delete-icon {
+    display: none;
+    margin-left: 5px;
+    font-size: 1rem;
+}
+
+.add-icon {
+    color: #0d6efd;
+}
+
+.delete-icon {
+    color: #dc3545;
+}
+
+a:hover .add-icon,
+a:hover .delete-icon {
+    display: inline;
+}
