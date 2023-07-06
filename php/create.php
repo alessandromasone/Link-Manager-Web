@@ -42,7 +42,12 @@ if (isset($_GET['folder'])) {
 } else if (isset($_GET['link'])) {
     // Aggiunta di un link
     $linkName = $_POST['folderName'];
-
+   
+    if (isset($_POST['itemUrl']) && !empty($_POST['parentId'])) {
+        $url = $_POST['itemUrl'];
+    } else {
+        $url = 'NULL';
+    }
     if (isset($_POST['parentId']) && !empty($_POST['parentId'])) {
         $parentId = $_POST['parentId'];
     } else {
@@ -61,7 +66,7 @@ if (isset($_GET['folder'])) {
     }
 
     // Prepara la query per l'inserimento del link nel database
-    $query = "INSERT INTO Directory (Nome, Tipo, ID_genitore) VALUES ('$linkName', 'link', $parentId)";
+    $query = "INSERT INTO Directory (Nome, Tipo, ID_genitore, Link) VALUES ('$linkName', 'link', $parentId, '$url')";
     if ($conn->query($query) === TRUE) {
         // Ottieni l'ID generato per il nuovo elemento
         $newItemId = $conn->insert_id;
@@ -70,7 +75,7 @@ if (isset($_GET['folder'])) {
         //echo $newItemId;
         $output = '<li data-attrib-id="' . $newItemId . '" data-attrib-type="link">';
 
-        $output .= '<a href="#"><span>' . $linkName . '</span><i class="fas fa-solid fa-pen edit-icon" onclick="clickeditbutton(' . $id . ')"></i> <i class="fas fa-trash delete-icon" data-attrib-id="' . $newItemId . '" onclick="clickdeletebutton(' . $newItemId . ')"></i></a></li>';
+        $output .= '<a href="' . $url . '"><span>' . $linkName . '</span><i class="fas fa-solid fa-pen edit-icon" onclick="clickeditbutton(' . $newItemId . ')"></i> <i class="fas fa-trash delete-icon" data-attrib-id="' . $newItemId . '" onclick="clickdeletebutton(' . $newItemId . ')"></i></a></li>';
         echo $output;
     } else {
         echo "Errore durante l'aggiunta del link: " . $conn->error;

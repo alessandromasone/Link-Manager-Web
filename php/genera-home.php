@@ -20,7 +20,7 @@ function generaStruttura($id_genitore, $conn)
             if ($tipo == 'folder') {
                 $output .= '<a href="#"><i class="fas fa-folder-open yellow folder-icon"></i> <span>' . $nome . '</span><i class="fas fa-solid fa-pen edit-icon" onclick="clickeditbutton(' . $id . ')"></i> <i class="fas fa-plus add-icon" data-attrib-id="' . $id . '" onclick="clickaddbutton(' . $id . ')"></i> <i class="fas fa-trash delete-icon" data-attrib-id="' . $id . '" onclick="clickdeletebutton(' . $id . ')"></i></a>';
             } else {
-                $output .= '<a href="#"><span>' . $nome . '</span><i class="fas fa-solid fa-pen edit-icon" onclick="clickeditbutton(' . $id . ')"></i> <i class="fas fa-trash delete-icon" data-attrib-id="' . $id . '" onclick="clickdeletebutton(' . $id . ')"></i></a>';
+                $output .= '<a href="' . $row['Link'] . '"><span>' . $nome . '</span><i class="fas fa-solid fa-pen edit-icon" onclick="clickeditbutton(' . $id . ')"></i> <i class="fas fa-trash delete-icon" data-attrib-id="' . $id . '" onclick="clickdeletebutton(' . $id . ')"></i></a>';
             }
 
             // Richiama la funzione ricorsivamente per generare i figli dell'elemento corrente

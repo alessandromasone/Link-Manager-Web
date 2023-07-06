@@ -14,18 +14,27 @@ function createNewItem() {
     const itemType = document.getElementById('itemType').value;
     const parentId = document.getElementById('parentId').value;
     const itemName = document.getElementById('itemName').value;
+    const itemUrl = document.getElementById('itemUrl').value;
 
     // Esegui la logica di salvataggio e aggiunta dell'elemento
     if (itemName.trim() !== '') {
+        // Crea un oggetto FormData per inviare i dati al server
+        const formData = new FormData();
+        formData.append('folderName', itemName);
+        formData.append('parentId', parentId);
 
+        if (itemType === 'link') {
+            formData.append('itemUrl', itemUrl);
+        }
+
+        // Effettua la chiamata AJAX per aggiungere l'elemento
         $.ajax({
             url: 'php/create.php?' + itemType,
             method: 'POST',
-            data: {
-                folderName: itemName,
-                parentId: parentId // Passa l'ID del genitore al server
-            },
-            success: function(response) {
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
                 console.log("R: " + response);
                 const parentElement = document.querySelector(`[data-attrib-id="${parentId}"]`);
                 let childList = parentElement.querySelector('ul');
@@ -41,9 +50,8 @@ function createNewItem() {
                 // Chiudi il modal
                 const createModal = bootstrap.Modal.getInstance(document.getElementById('createModal'));
                 createModal.hide();
-
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error(error);
             }
         });

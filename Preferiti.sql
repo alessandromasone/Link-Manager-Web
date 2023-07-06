@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Creato il: Lug 06, 2023 alle 19:48
+-- Creato il: Lug 06, 2023 alle 23:16
 -- Versione del server: 5.7.39
 -- Versione PHP: 8.2.0
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `Directory` (
   `ID` int(11) NOT NULL,
   `Nome` varchar(255) DEFAULT NULL,
+  `Link` text,
   `Tipo` varchar(10) DEFAULT NULL,
   `ID_genitore` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -38,33 +39,34 @@ CREATE TABLE `Directory` (
 -- Dump dei dati per la tabella `Directory`
 --
 
-INSERT INTO `Directory` (`ID`, `Nome`, `Tipo`, `ID_genitore`) VALUES
-(1, '/', 'folder', NULL),
-(2, 'home', 'folder', 1),
-(3, 'user', 'folder', 2),
-(4, 'Documents', 'folder', 3),
-(5, 'Pictures', 'folder', 3),
-(6, 'Music', 'folder', 3),
-(7, 'guest', 'folder', 2),
-(8, 'Documents', 'folder', 7),
-(9, 'Pictures', 'folder', 7),
-(10, 'var', 'folder', 1),
-(11, 'log', 'link', 10),
-(12, 'www', 'folder', 10),
-(13, 'html', 'folder', 12),
-(14, 'cgi-bin', 'folder', 12),
-(15, 'etc', 'folder', 1),
-(16, 'network', 'folder', 15),
-(17, 'apache2', 'folder', 15),
-(18, 'ssh', 'folder', 15),
-(19, 'Document 1', 'link', 4),
-(20, 'Document 2', 'link', 4),
-(21, 'Picture 1', 'link', 5),
-(22, 'Picture 2', 'link', 5),
-(23, 'Song 1', 'link', 6),
-(109, 'test2', 'folder', 108),
-(110, 'test3', 'link', 108),
-(111, 'Song 2', 'link', 6);
+INSERT INTO `Directory` (`ID`, `Nome`, `Link`, `Tipo`, `ID_genitore`) VALUES
+(1, '/', NULL, 'folder', NULL),
+(2, 'home', NULL, 'folder', 1),
+(3, 'user', NULL, 'folder', 2),
+(4, 'Documents', NULL, 'folder', 3),
+(5, 'Photos', NULL, 'folder', 3),
+(6, 'Music', NULL, 'folder', 3),
+(7, 'guest', NULL, 'folder', 2),
+(8, 'Documents', NULL, 'folder', 7),
+(9, 'Pictures', NULL, 'folder', 7),
+(10, 'var', NULL, 'folder', 1),
+(11, 'log', NULL, 'link', 10),
+(12, 'www', NULL, 'folder', 10),
+(13, 'html', NULL, 'folder', 12),
+(14, 'cgi-bin', NULL, 'folder', 12),
+(15, 'etc', NULL, 'folder', 1),
+(16, 'network', NULL, 'folder', 15),
+(17, 'apache2', NULL, 'folder', 15),
+(18, 'ssh', NULL, 'folder', 15),
+(19, 'Document 1', NULL, 'link', 4),
+(20, 'Document 2', NULL, 'link', 4),
+(21, 'Picture 1', NULL, 'link', 5),
+(22, 'Picture 2', NULL, 'link', 5),
+(23, 'Song 1', NULL, 'link', 6),
+(109, 'test2', NULL, 'folder', 108),
+(110, 'test3', NULL, 'link', 108),
+(111, 'Song 2', NULL, 'link', 6),
+(114, 'temp', 'templll', 'link', 5);
 
 --
 -- Indici per le tabelle scaricate
@@ -84,7 +86,7 @@ ALTER TABLE `Directory`
 -- AUTO_INCREMENT per la tabella `Directory`
 --
 ALTER TABLE `Directory`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

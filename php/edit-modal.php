@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Modifica nome elemento</h5>
+                <h5 class="modal-title" id="editModalLabel">Modifica elemento</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -10,6 +10,10 @@
                     <div class="mb-3">
                         <label for="editItemName" class="form-label">Nome</label>
                         <input type="text" class="form-control" id="editItemName">
+                    </div>
+                    <div class="mb-3" id="editLinkUrl" style="display: none;">
+                        <label for="editItemUrl" class="form-label">URL</label>
+                        <input type="text" class="form-control" id="editItemUrl">
                     </div>
                 </form>
             </div>

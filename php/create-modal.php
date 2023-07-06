@@ -9,7 +9,7 @@
                 <form id="createForm">
                     <div class="mb-3">
                         <label for="itemType" class="form-label">Tipo di elemento</label>
-                        <select class="form-select" id="itemType">
+                        <select class="form-select" id="itemType" onchange="toggleUrlInput()">
                             <option value="folder">Cartella</option>
                             <option value="link">Link</option>
                         </select>
@@ -18,6 +18,10 @@
                     <div class="mb-3">
                         <label for="itemName" class="form-label">Nome dell'elemento</label>
                         <input type="text" class="form-control" id="itemName">
+                    </div>
+                    <div class="mb-3" id="urlInputContainer" style="display: none;">
+                        <label for="itemUrl" class="form-label">URL</label>
+                        <input type="text" class="form-control" id="itemUrl">
                     </div>
                 </form>
             </div>
@@ -28,3 +32,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    function toggleUrlInput() {
+        const itemType = document.getElementById('itemType').value;
+        const urlInputContainer = document.getElementById('urlInputContainer');
+
+        if (itemType === 'link') {
+            urlInputContainer.style.display = 'block';
+        } else {
+            urlInputContainer.style.display = 'none';
+        }
+    }
+</script>
