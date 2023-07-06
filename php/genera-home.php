@@ -1,5 +1,5 @@
 <?php
-require_once('connection.php');
+require_once('connect.php');
 
 // Funzione ricorsiva per generare la struttura ad albero
 function generaStruttura($id_genitore, $conn)
@@ -18,7 +18,7 @@ function generaStruttura($id_genitore, $conn)
 
             $output .= '<li data-attrib-id="' . $id . '" data-attrib-type="' . $tipo . '">';
             if ($tipo == 'folder') {
-                $output .= '<a href="#"><i class="fas fa-folder-open yellow folder-icon"></i> <span>' . $nome . '</span><i class="fas fa-plus add-icon" data-attrib-id="' . $id . '"></i> <i class="fas fa-trash delete-icon" data-attrib-id="' . $id . '"></i></a>';
+                $output .= '<a href="#"><i class="fas fa-folder-open yellow folder-icon"></i> <span>' . $nome . '</span><i class="fas fa-plus add-icon" data-attrib-id="' . $id . '" onclick="clickaddbutton(' . $id . ')"></i> <i class="fas fa-trash delete-icon" data-attrib-id="' . $id . '"></i></a>';
             } else {
                 $output .= '<a href="#"><span>' . $nome . '</span><i class="fas fa-trash delete-icon" data-attrib-id="' . $id . '"></i></a>';
             }

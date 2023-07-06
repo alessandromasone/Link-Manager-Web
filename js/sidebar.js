@@ -26,13 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+    /*
     // Evento per gestire il clic sul pulsante per nascondere/mostrare la sidebar
     const toggleSidebarButton = document.getElementById('toggleSidebarButton');
     toggleSidebarButton.addEventListener('click', () => {
         const sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('hidden');
     });
-
+    */
 
 
 });
