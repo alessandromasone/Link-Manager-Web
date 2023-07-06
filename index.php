@@ -21,12 +21,13 @@
 
     <?php include_once('php/modal.php'); ?>
 
-    <script src="js/genera-home.js"></script>
+    <script src="js/generate-home.js"></script>
 
     <script src="js/highlights-element.js"></script>
     <script src="js/folder-click.js"></script>
     <script src="js/drag.js"></script>
     <script src="js/create.js"></script>
+    <script src="js/delete.js"></script>
     <!--<script src="js/sidebar.js"></script>-->
 
 
