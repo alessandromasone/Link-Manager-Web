@@ -41,30 +41,36 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const dropZone = event.target.closest('li');
         const dropZoneType = dropZone.getAttribute('data-attrib-type');
-
+    
         if (dropZone && dropZone !== draggedItem && dropZoneType !== 'link') {
             const dropZoneAncestors = getAncestors(dropZone);
             const isParent = dropZoneAncestors.includes(draggedItem);
             const isSelf = dropZone === draggedItem;
-
+    
             if (!isParent && !isSelf) {
                 dropZone.classList.remove('drag-over');
-
+    
                 const dropZoneList = dropZone.querySelector('ul');
-                if (!dropZoneList) {
-                    const newUl = document.createElement('ul');
-                    dropZone.appendChild(newUl);
-                }
-
+                const sourceList = draggedItem.parentNode;
+    
                 draggedItem.parentNode.removeChild(draggedItem);
-                dropZone.querySelector('ul').appendChild(draggedItem);
-
+                dropZone.appendChild(draggedItem);
+    
+                // Rimuovi l'elemento <ul> vuoto dalla cartella di origine se diventa vuota dopo il trascinamento
+                if (sourceList.childElementCount === 0 && sourceList.parentNode !== tree) {
+                    sourceList.remove();
+                }
+    
+                // Aggiorna il genitore dell'elemento nel database
                 const itemId = draggedItem.getAttribute('data-attrib-id');
                 const newParentId = dropZone.getAttribute('data-attrib-id');
                 updateDatabase(itemId, newParentId);
             }
         }
     });
+    
+    
+
 
     function getAncestors(element) {
         const ancestors = [];
