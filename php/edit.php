@@ -7,12 +7,12 @@ function updateItem($itemId, $newName, $newUrl = null)
 
     if ($newUrl !== null) {
         // Prepara la query per aggiornare il nome e l'URL dell'elemento nel database
-        $query = "UPDATE Directory SET Nome = ?, Link = ? WHERE ID = ?";
+        $query = "UPDATE element SET Nome = ?, Link = ? WHERE ID = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('ssi', $newName, $newUrl, $itemId);
     } else {
         // Prepara la query per aggiornare solo il nome dell'elemento nel database
-        $query = "UPDATE Directory SET Nome = ? WHERE ID = ?";
+        $query = "UPDATE element SET Nome = ? WHERE ID = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('si', $newName, $itemId);
     }

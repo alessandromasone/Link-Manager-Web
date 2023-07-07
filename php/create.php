@@ -10,7 +10,7 @@ if (isset($_GET['folder'])) {
         $parentId = $_POST['parentId'];
     } else {
         // Recupera l'ID della radice dal database
-        $query = "SELECT ID FROM Directory WHERE ID_genitore IS NULL";
+        $query = "SELECT ID FROM element WHERE ID_genitore IS NULL";
         $statement = $conn->prepare($query);
         $statement->execute();
 
@@ -27,7 +27,7 @@ if (isset($_GET['folder'])) {
     }
 
     // Prepara la query per l'inserimento della cartella nel database
-    $query = "INSERT INTO Directory (Nome, Tipo, ID_genitore) VALUES (?, 'folder', ?)";
+    $query = "INSERT INTO element (Nome, Tipo, ID_genitore) VALUES (?, 'folder', ?)";
     $statement = $conn->prepare($query);
     $statement->bind_param("si", $folderName, $parentId);
 
@@ -62,7 +62,7 @@ if (isset($_GET['folder'])) {
         $parentId = $_POST['parentId'];
     } else {
         // Recupera l'ID della radice dal database
-        $query = "SELECT ID FROM Directory WHERE ID_genitore IS NULL";
+        $query = "SELECT ID FROM element WHERE ID_genitore IS NULL";
         $statement = $conn->prepare($query);
         $statement->execute();
 
@@ -79,7 +79,7 @@ if (isset($_GET['folder'])) {
     }
 
     // Prepara la query per l'inserimento del link nel database
-    $query = "INSERT INTO Directory (Nome, Tipo, ID_genitore, Link) VALUES (?, 'link', ?, ?)";
+    $query = "INSERT INTO element (Nome, Tipo, ID_genitore, Link) VALUES (?, 'link', ?, ?)";
     $statement = $conn->prepare($query);
     $statement->bind_param("sis", $linkName, $parentId, $url);
 

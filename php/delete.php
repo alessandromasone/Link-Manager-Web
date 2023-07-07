@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $itemId = $_POST['itemId'];
 
         // Prepara la query di eliminazione
-        $sql = "DELETE FROM Directory WHERE ID = ?";
+        $sql = "DELETE FROM element WHERE ID = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('i', $itemId);
 

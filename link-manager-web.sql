@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Creato il: Lug 06, 2023 alle 23:16
+-- Creato il: Lug 07, 2023 alle 09:40
 -- Versione del server: 5.7.39
 -- Versione PHP: 8.2.0
 
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Preferiti`
+-- Database: `link-manager-web`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `Directory`
+-- Struttura della tabella `element`
 --
 
-CREATE TABLE `Directory` (
+CREATE TABLE `element` (
   `ID` int(11) NOT NULL,
   `Nome` varchar(255) DEFAULT NULL,
   `Link` text,
@@ -36,10 +36,10 @@ CREATE TABLE `Directory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dump dei dati per la tabella `Directory`
+-- Dump dei dati per la tabella `element`
 --
 
-INSERT INTO `Directory` (`ID`, `Nome`, `Link`, `Tipo`, `ID_genitore`) VALUES
+INSERT INTO `element` (`ID`, `Nome`, `Link`, `Tipo`, `ID_genitore`) VALUES
 (1, '/', NULL, 'folder', NULL),
 (2, 'home', NULL, 'folder', 1),
 (3, 'user', NULL, 'folder', 2),
@@ -50,7 +50,7 @@ INSERT INTO `Directory` (`ID`, `Nome`, `Link`, `Tipo`, `ID_genitore`) VALUES
 (8, 'Documents', NULL, 'folder', 7),
 (9, 'Pictures', NULL, 'folder', 7),
 (10, 'var', NULL, 'folder', 1),
-(11, 'log', NULL, 'link', 10),
+(11, 'log', '', 'link', 10),
 (12, 'www', NULL, 'folder', 10),
 (13, 'html', NULL, 'folder', 12),
 (14, 'cgi-bin', NULL, 'folder', 12),
@@ -65,17 +65,16 @@ INSERT INTO `Directory` (`ID`, `Nome`, `Link`, `Tipo`, `ID_genitore`) VALUES
 (23, 'Song 1', NULL, 'link', 6),
 (109, 'test2', NULL, 'folder', 108),
 (110, 'test3', NULL, 'link', 108),
-(111, 'Song 2', NULL, 'link', 6),
-(114, 'temp', 'templll', 'link', 5);
+(111, 'Song 2', NULL, 'link', 6);
 
 --
 -- Indici per le tabelle scaricate
 --
 
 --
--- Indici per le tabelle `Directory`
+-- Indici per le tabelle `element`
 --
-ALTER TABLE `Directory`
+ALTER TABLE `element`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -83,9 +82,9 @@ ALTER TABLE `Directory`
 --
 
 --
--- AUTO_INCREMENT per la tabella `Directory`
+-- AUTO_INCREMENT per la tabella `element`
 --
-ALTER TABLE `Directory`
+ALTER TABLE `element`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 COMMIT;
 

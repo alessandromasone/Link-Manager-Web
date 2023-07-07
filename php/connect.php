@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "Preferiti";
+$dbname = "link-manager-web";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {

@@ -6,7 +6,7 @@ function updateParentId($itemId, $newParentId)
 {
     global $conn;
 
-    $stmt = $conn->prepare("UPDATE Directory SET ID_genitore = ? WHERE ID = ?");
+    $stmt = $conn->prepare("UPDATE element SET ID_genitore = ? WHERE ID = ?");
     $stmt->bind_param("ii", $newParentId, $itemId);
 
     if ($stmt->execute()) {
@@ -25,7 +25,7 @@ function canMoveToParent($itemId, $newParentId)
     $parentType = null;
 
     // Verifica se l'elemento da spostare è una cartella o un file
-    $query = "SELECT Tipo FROM Directory WHERE ID = ?";
+    $query = "SELECT Tipo FROM element WHERE ID = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $itemId);
     $stmt->execute();
@@ -34,7 +34,7 @@ function canMoveToParent($itemId, $newParentId)
 
     if ($stmt->fetch()) {
         // Verifica se il nuovo genitore è una cartella
-        $query = "SELECT Tipo FROM Directory WHERE ID = ?";
+        $query = "SELECT Tipo FROM element WHERE ID = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $newParentId);
         $stmt->execute();

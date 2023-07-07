@@ -7,7 +7,7 @@ function generaStruttura($id_genitore, $conn)
     $output = '';
 
     // Prepara la query utilizzando un prepared statement per evitare SQL injection
-    $query = "SELECT * FROM Directory WHERE ID_genitore = ?";
+    $query = "SELECT * FROM element WHERE ID_genitore = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $id_genitore);
     $stmt->execute();
@@ -24,7 +24,7 @@ function generaStruttura($id_genitore, $conn)
             $output .= '<li data-attrib-id="' . $id . '" data-attrib-type="' . $tipo . '">';
             if ($tipo == 'folder') {
                 $output .= '
-                    <a>
+                    <a href="#">
                         <i class="fas fa-folder-open yellow folder-icon"></i>
                         <span>' . $nome . '</span>
                         <i class="fas fa-solid fa-pen edit-icon" onclick="clickeditbutton(' . $id . ')"></i>
@@ -32,7 +32,7 @@ function generaStruttura($id_genitore, $conn)
                         <i class="fas fa-trash delete-icon" data-attrib-id="' . $id . '" onclick="clickdeletebutton(' . $id . ')"></i>
                     </a>';
             } else {
-                $link = !empty($row['Link']) ? 'href="' . $row['Link'] . '"' : '';
+                $link = !empty($row['Link']) ? 'href="' . $row['Link'] . '"' : 'href="#"';
                 $output .= '
                     <a ' . $link . '>
                         <span>' . $nome . '</span>
@@ -57,7 +57,7 @@ function generaStruttura($id_genitore, $conn)
 }
 
 // Ottieni l'ID dell'elemento radice dal database
-$query = "SELECT ID FROM Directory WHERE ID_genitore IS NULL";
+$query = "SELECT ID FROM element WHERE ID_genitore IS NULL";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 
