@@ -16,10 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (childList) {
                     if (childList.style.display === 'none') {
+                        // Se la lista dei figli è nascosta, mostra la lista e aggiorna l'icona della cartella
                         childList.style.display = 'block';
                         folderIcon.classList.remove('fa-folder');
                         folderIcon.classList.add('fa-folder-open');
                     } else {
+                        // Se la lista dei figli è visibile, nascondi la lista e aggiorna l'icona della cartella
                         childList.style.display = 'none';
                         folderIcon.classList.remove('fa-folder-open');
                         folderIcon.classList.add('fa-folder');
@@ -28,8 +30,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
-
-
-
 });

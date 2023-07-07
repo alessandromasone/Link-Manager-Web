@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let startX;
     let startWidth;
 
+    // Gestore di eventi per iniziare il ridimensionamento della sidebar
     border.addEventListener('mousedown', startResize);
 
     function startResize(e) {
@@ -15,20 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function resizeSidebar(e) {
+        // Calcola la nuova larghezza della sidebar in base allo spostamento del mouse
         const width = startWidth + (e.clientX - startX);
         sidebar.style.width = `${width}px`;
     }
 
     function stopResize() {
+        // Rimuove i gestori di eventi per il ridimensionamento della sidebar
         document.removeEventListener('mousemove', resizeSidebar);
         document.removeEventListener('mouseup', stopResize);
     }
 
-    // Evento per gestire il clic sul pulsante per nascondere/mostrare la sidebar
+    // Gestore di eventi per nascondere/mostrare la sidebar
     const toggleSidebarButton = document.getElementById('toggleSidebarButton');
     toggleSidebarButton.addEventListener('click', () => {
-        const sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('hidden');
     });
-
 });

@@ -5,9 +5,14 @@ require_once('connect.php');
 function generaStruttura($id_genitore, $conn)
 {
     $output = '';
-    // Query per selezionare i figli dell'elemento genitore specificato
-    $query = "SELECT * FROM Directory WHERE ID_genitore = $id_genitore";
-    $result = $conn->query($query);
+
+    // Prepara la query utilizzando un prepared statement per evitare SQL injection
+    $query = "SELECT * FROM Directory WHERE ID_genitore = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $id_genitore);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $output = '<ul>';
@@ -18,10 +23,24 @@ function generaStruttura($id_genitore, $conn)
 
             $output .= '<li data-attrib-id="' . $id . '" data-attrib-type="' . $tipo . '">';
             if ($tipo == 'folder') {
-                $output .= '<a href="#"><i class="fas fa-folder-open yellow folder-icon"></i> <span>' . $nome . '</span><i class="fas fa-solid fa-pen edit-icon" onclick="clickeditbutton(' . $id . ')"></i> <i class="fas fa-plus add-icon" data-attrib-id="' . $id . '" onclick="clickaddbutton(' . $id . ')"></i> <i class="fas fa-trash delete-icon" data-attrib-id="' . $id . '" onclick="clickdeletebutton(' . $id . ')"></i></a>';
+                $output .= '
+                    <a>
+                        <i class="fas fa-folder-open yellow folder-icon"></i>
+                        <span>' . $nome . '</span>
+                        <i class="fas fa-solid fa-pen edit-icon" onclick="clickeditbutton(' . $id . ')"></i>
+                        <i class="fas fa-plus add-icon" data-attrib-id="' . $id . '" onclick="clickaddbutton(' . $id . ')"></i>
+                        <i class="fas fa-trash delete-icon" data-attrib-id="' . $id . '" onclick="clickdeletebutton(' . $id . ')"></i>
+                    </a>';
             } else {
-                $output .= '<a href="' . $row['Link'] . '"><span>' . $nome . '</span><i class="fas fa-solid fa-pen edit-icon" onclick="clickeditbutton(' . $id . ')"></i> <i class="fas fa-trash delete-icon" data-attrib-id="' . $id . '" onclick="clickdeletebutton(' . $id . ')"></i></a>';
+                $link = !empty($row['Link']) ? 'href="' . $row['Link'] . '"' : '';
+                $output .= '
+                    <a ' . $link . '>
+                        <span>' . $nome . '</span>
+                        <i class="fas fa-solid fa-pen edit-icon" onclick="clickeditbutton(' . $id . ')"></i>
+                        <i class="fas fa-trash delete-icon" data-attrib-id="' . $id . '" onclick="clickdeletebutton(' . $id . ')"></i>
+                    </a>';
             }
+
 
             // Richiama la funzione ricorsivamente per generare i figli dell'elemento corrente
             $output .= generaStruttura($id, $conn);
@@ -32,14 +51,17 @@ function generaStruttura($id_genitore, $conn)
         $output .= '</ul>';
     }
 
-    $result->free_result();
+    $stmt->close();
 
     return $output;
 }
 
 // Ottieni l'ID dell'elemento radice dal database
 $query = "SELECT ID FROM Directory WHERE ID_genitore IS NULL";
-$result = $conn->query($query);
+$stmt = $conn->prepare($query);
+$stmt->execute();
+
+$result = $stmt->get_result();
 
 if ($result->num_rows === 1) {
     $row = $result->fetch_assoc();
@@ -58,6 +80,5 @@ if ($result->num_rows === 1) {
     echo "Errore: impossibile determinare l'elemento radice nel database.";
 }
 
-$result->free_result();
+$stmt->close();
 $conn->close();
-?>

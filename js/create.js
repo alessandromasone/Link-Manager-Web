@@ -1,15 +1,19 @@
-
 function toggleUrlInput() {
+    // Ottieni il valore del tipo di elemento selezionato
     const itemType = document.getElementById('create-itemType').value;
+
+    // Ottieni il riferimento al container dell'input URL
     const urlInputContainer = document.getElementById('create-urlInputContainer');
 
+    // Verifica il tipo di elemento selezionato
     if (itemType === 'link') {
+        // Se il tipo di elemento è 'link', mostra il container dell'input URL
         urlInputContainer.style.display = 'block';
     } else {
+        // Altrimenti, nascondi il container dell'input URL
         urlInputContainer.style.display = 'none';
     }
 }
-
 
 function clickaddbutton(parentId) {
 
