@@ -37,20 +37,27 @@
     border-radius: 5px;
 }
 
-/*
-.sidebar {
-    border-right: 0.1rem solid lightgray;
-    width: 260px;
-    min-width: 260px;
-    max-width: 350px;
-    overflow-x: auto;
-    overflow-y: auto;
+.sidebar-border {
+    position: absolute;
     top: 0;
-    bottom: 0;
-    left: 0;
-    cursor: col-resize;
+    right: -4px;
+    width: 8px;
+    height: 100%;
+    cursor: ew-resize;
+    z-index: 999;
 }
-*/
+
+.sidebar {
+    position: relative;
+    width: 300px;
+    min-width: 200px;
+    /* Larghezza minima */
+    max-width: 500px;
+    /* Larghezza massima */
+    height: 100%;
+    border-right: 1px solid #ddd;
+    overflow: auto;
+}
 
 #content {
     position: fixed;
@@ -140,7 +147,8 @@ a:hover .edit-icon {
 }
 
 .tree ul {
-    min-height: 20px; /* Aggiungi una altezza minima per l'area di trascinamento */
+    min-height: 20px;
+    /* Aggiungi una altezza minima per l'area di trascinamento */
 }
 
 .tree ul li {

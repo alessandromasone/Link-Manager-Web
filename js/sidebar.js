@@ -1,11 +1,10 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('sidebar');
+    const border = document.getElementById('sidebar-border');
     let startX;
     let startWidth;
 
-    sidebar.addEventListener('mousedown', startResize);
+    border.addEventListener('mousedown', startResize);
 
     function startResize(e) {
         e.preventDefault();
@@ -25,15 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.removeEventListener('mouseup', stopResize);
     }
 
-
-    /*
     // Evento per gestire il clic sul pulsante per nascondere/mostrare la sidebar
     const toggleSidebarButton = document.getElementById('toggleSidebarButton');
     toggleSidebarButton.addEventListener('click', () => {
         const sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('hidden');
     });
-    */
-
 
 });

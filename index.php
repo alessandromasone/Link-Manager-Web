@@ -12,12 +12,19 @@
 </head>
 
 <body>
+    <div id="toggleSidebarButton" class="m-3 toggleSidebar">
+        <i class="fas fa-star fa-2x yellow"></i>
+        <h2>Preferiti</h2>
+    </div>
     <div id="sidebar" class="sidebar">
+        <div id="sidebar-border" class="sidebar-border"></div>
         <div class="tree" id="directoryTree">
             <ul class="list-unstyled">
+                <!-- Contenuto dell'albero delle directory -->
             </ul>
         </div>
     </div>
+
 
     <?php include_once('php/create-modal.php'); ?>
     <?php include_once('php/edit-modal.php'); ?>
@@ -30,7 +37,7 @@
     <script src="js/create.js"></script>
     <script src="js/delete.js"></script>
     <script src="js/edit.js"></script>
-    <!--<script src="js/sidebar.js"></script>-->
+    <script src="js/sidebar.js"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
