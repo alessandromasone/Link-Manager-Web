@@ -14,7 +14,7 @@
 <body>
     <div id="toggleSidebarButton" class="m-3 toggleSidebar">
         <i class="fas fa-star fa-2x yellow"></i>
-        <h2>Preferiti</h2>
+        <h2>Link Manager Web</h2>
     </div>
     <div id="sidebar" class="sidebar">
         <div id="sidebar-border" class="sidebar-border"></div>
