@@ -1,5 +1,6 @@
 // Dichiarazione globale del listener per il pulsante "Salva"
 const saveButton = document.getElementById('editSaveButton');
+
 saveButton.addEventListener('click', function () {
     const itemId = saveButton.getAttribute('data-item-id');
     const itemType = saveButton.getAttribute('data-item-type');
@@ -9,56 +10,57 @@ saveButton.addEventListener('click', function () {
     const newName = inputName.value;
 
     // Recupera il nuovo URL solo se la tipologia è "link"
-    let newUrl = '';
-    if (itemType === 'link') {
-        newUrl = inputUrl.value;
-    }
+    const newUrl = (itemType === 'link') ? inputUrl.value : '';
 
-    console.log("itemType: " + itemType);
-    console.log("itemId: " + itemId);
-    console.log("newName: " + newName);
-    console.log("newUrl: " + newUrl);
+    // Crea un oggetto FormData e aggiungi i dati
+    const formData = new FormData();
+    formData.append('itemId', itemId);
+    formData.append('newName', newName);
+    formData.append('itemType', itemType);
+    formData.append('newUrl', newUrl);
+
 
     // Effettua la chiamata AJAX per salvare la modifica
     $.ajax({
-        url: 'php/edit.php?' + itemType,
+        url: 'php/edit.php',
         method: 'POST',
-        data: {
-            itemType: itemType,
-            itemId: itemId,
-            newName: newName,
-            newUrl: newUrl
-        },
+        data: formData,
+        processData: false, // Disabilita l'elaborazione dei dati
+        contentType: false, // Disabilita l'impostazione del tipo di contenuto
         success: function (response) {
-            console.log(response); // Risposta dal server
 
-            // Trova l'elemento HTML con l'ID specificato
-            const item = document.querySelector(`[data-attrib-id="${itemId}"]`);
-            if (!item) {
-                console.error(`Element with ID ${itemId} not found.`);
-                return;
+            if (response.status == 'success') {
+                // Trova l'elemento HTML con l'ID specificato
+                const item = document.querySelector(`[data-attrib-id="${itemId}"]`);
+                if (!item) {
+                    console.error(`Element with ID ${itemId} not found.`);
+                    return;
+                }
+
+                // Recupera il nome dell'elemento dallo span
+                const itemName = item.querySelector('span');
+                if (!itemName) {
+                    console.error(`Name element not found for item with ID ${itemId}.`);
+                    return;
+                }
+
+                // Aggiorna l'interfaccia con il nuovo nome
+                itemName.textContent = newName;
+
+                // Recupera l'URL dell'elemento se presente
+                const itemLink = item.querySelector('a');
+                if (itemLink) {
+                    // Aggiorna l'URL nell'attributo href del tag <a> se presente
+                    itemLink.setAttribute('href', newUrl);
+                }
+
+                // Chiudi il modale
+                const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+                editModal.hide();
+            } else {
+                console.error(response.data);
             }
 
-            // Recupera il nome dell'elemento dallo span
-            const itemName = item.querySelector('span');
-            if (!itemName) {
-                console.error(`Name element not found for item with ID ${itemId}.`);
-                return;
-            }
-
-            // Aggiorna l'interfaccia con il nuovo nome
-            itemName.textContent = newName;
-
-            // Recupera l'URL dell'elemento se presente
-            const itemLink = item.querySelector('a');
-            if (itemLink) {
-                // Aggiorna l'URL nell'attributo href del tag <a> se presente
-                itemLink.setAttribute('href', newUrl);
-            }
-
-            // Chiudi il modale
-            const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
-            editModal.hide();
         },
         error: function (xhr, status, error) {
             console.error(error);
@@ -99,13 +101,8 @@ function clickeditbutton(itemId) {
 
     // Mostra o nascondi il campo URL in base alla tipologia dell'elemento
     const editLinkUrl = document.getElementById('editLinkUrl');
-    if (itemType === 'link') {
-        editLinkUrl.style.display = 'block';
-        inputUrl.value = itemUrl; // Imposta il valore del campo URL con l'URL corrente dell'elemento
-    } else {
-        editLinkUrl.style.display = 'none';
-        inputUrl.value = ''; // Pulisci il valore del campo URL
-    }
+    editLinkUrl.style.display = (itemType === 'link') ? 'block' : 'none';
+    inputUrl.value = (itemType === 'link') ? itemUrl : '';
 
     // Imposta il valore del campo nome con il nome corrente
     inputName.value = currentName;
