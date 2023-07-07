@@ -1,22 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-
     const tree = document.querySelector('.tree');
     let draggedItem = null;
 
+    // Evento dragstart: avviato quando viene iniziato il trascinamento di un elemento
     tree.addEventListener('dragstart', (event) => {
-        draggedItem = event.target.closest('li');
+        draggedItem = event.target.closest('li'); // Recupera l'elemento <li> più vicino
         event.dataTransfer.effectAllowed = 'move';
         event.dataTransfer.setData('text/html', draggedItem.outerHTML);
         draggedItem.classList.add('drag-over');
     });
 
+    // Evento dragend: avviato quando il trascinamento di un elemento viene completato o annullato
     tree.addEventListener('dragend', (event) => {
         draggedItem = event.target.closest('li');
         draggedItem.classList.remove('drag-over');
     });
 
-
+    // Evento dragover: avviato quando un elemento viene trascinato sopra un'area di destinazione valida
     tree.addEventListener('dragover', (event) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = 'move';
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Evento dragleave: avviato quando un elemento viene trascinato fuori da un'area di destinazione valida
     tree.addEventListener('dragleave', (event) => {
         const dropZone = event.target.closest('li');
         const dropZoneType = dropZone.getAttribute('data-attrib-type');
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Evento drop: avviato quando viene rilasciato un elemento trascinato su un'area di destinazione valida
     tree.addEventListener('drop', (event) => {
         event.preventDefault();
         const dropZone = event.target.closest('li');
@@ -75,11 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
-
-
-
-
+    // Funzione per ottenere gli elementi genitori di un elemento
     function getAncestors(element) {
         const ancestors = [];
         let currentElement = element.parentElement;
@@ -92,22 +91,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return ancestors;
     }
 
+    // Funzione per aggiornare il database con le informazioni del trascinamento
     function updateDatabase(itemId, newParentId) {
-        // Aggiungi qui la logica per aggiornare il database con le informazioni del trascinamento
-        console.log('Aggiorna database:', itemId, newParentId);
         // Effettua la richiesta AJAX per l'aggiornamento del database utilizzando jQuery
         $.ajax({
             url: 'php/move.php',
             method: 'POST',
             data: { itemId: itemId, newParentId: newParentId },
-            success: function (response) {
-                console.log(response);
-            },
+            success: function (response) { },
             error: function (xhr, status, error) {
                 console.error(error);
             }
         });
     }
-
 
 });
