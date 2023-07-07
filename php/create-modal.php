@@ -8,20 +8,20 @@
             <div class="modal-body">
                 <form id="createForm">
                     <div class="mb-3">
-                        <label for="itemType" class="form-label">Tipo di elemento</label>
-                        <select class="form-select" id="itemType" onchange="toggleUrlInput()">
+                        <label for="create-itemType" class="form-label">Tipo di elemento</label>
+                        <select class="form-select" id="create-itemType" onchange="toggleUrlInput()">
                             <option value="folder">Cartella</option>
-                            <option value="link">Link</option>
+                            <option value="link" selected>Link</option>
                         </select>
                     </div>
-                    <input type="hidden" class="form-control" id="parentId" readonly>
+                    <input type="hidden" class="form-control" id="create-parentId" readonly>
                     <div class="mb-3">
-                        <label for="itemName" class="form-label">Nome dell'elemento</label>
-                        <input type="text" class="form-control" id="itemName">
+                        <label for="create-itemName" class="form-label">Nome dell'elemento</label>
+                        <input type="text" class="form-control" id="create-itemName">
                     </div>
-                    <div class="mb-3" id="urlInputContainer" style="display: none;">
-                        <label for="itemUrl" class="form-label">URL</label>
-                        <input type="text" class="form-control" id="itemUrl">
+                    <div class="mb-3" id="create-urlInputContainer" style="display: none;">
+                        <label for="create-itemUrl" class="form-label">URL</label>
+                        <input type="text" class="form-control" id="create-itemUrl">
                     </div>
                 </form>
             </div>
@@ -33,15 +33,3 @@
     </div>
 </div>
 
-<script>
-    function toggleUrlInput() {
-        const itemType = document.getElementById('itemType').value;
-        const urlInputContainer = document.getElementById('urlInputContainer');
-
-        if (itemType === 'link') {
-            urlInputContainer.style.display = 'block';
-        } else {
-            urlInputContainer.style.display = 'none';
-        }
-    }
-</script>
