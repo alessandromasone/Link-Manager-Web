@@ -50,8 +50,11 @@ Nel file `connect.php`, puoi modificare le impostazioni di connessione al databa
 6. Ridimensiona la barra laterale facendo clic e trascinando il bordo destro.
 7. Fai clic sul pulsante "Stessa" per nascondere o mostrare la barra laterale.
 
-## Contributi
+## Licenza
 
-I contributi al progetto sono benvenuti! Se desideri contribuire, apri una richiesta di pull con le tue modifiche o segnala eventuali problemi nell'issue tracker.
+Questo progetto è distribuito sotto la Licenza MIT - vedi il file [LICENSE](LICENSE) per ulteriori dettagli.
 
-Speriamo che tu trovi Link-Manager-Web utile e facile da utilizzare!
+
+## Autore
+
+Questo progetto è stato creato da [alessandromasone](https://github.com/alessandromasone).
